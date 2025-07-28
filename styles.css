@@ -915,7 +915,7 @@ body {
 @media (max-width: 768px) {
     .page-content {
         padding: 1rem;
-        padding-top: 5rem;
+        padding-top: 7rem;
     }
     
     .page-header {
@@ -923,7 +923,8 @@ body {
         flex-direction: column;
         gap: 0.5rem;
         height: auto;
-        min-height: 4rem;
+        min-height: 3.5rem;
+        max-height: 5rem;
     }
     
     .page-header h2 {
@@ -977,7 +978,7 @@ body {
 @media (max-width: 480px) {
     .page-content {
         padding: 0.5rem;
-        padding-top: 4.5rem;
+        padding-top: 6rem;
     }
     
     .page-header {
