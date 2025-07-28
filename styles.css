@@ -7,6 +7,17 @@
 
 html {
     min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Garantir que os botões flutuantes não sejam afetados pelo overflow do html */
+html .floating-btn {
+    position: fixed !important;
+    z-index: 9999 !important;
+    pointer-events: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: flex !important;
 }
 
 body {
@@ -19,6 +30,15 @@ body {
     line-height: 1.6;
 }
 
+/* Garantir que os botões flutuantes não sejam afetados pelo body */
+body .floating-btn {
+    position: fixed !important;
+    z-index: 9999 !important;
+    pointer-events: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
 /* Container do livro */
 .book-container {
     position: relative;
@@ -26,6 +46,15 @@ body {
     height: 100vh;
     perspective: 1000px;
     overflow: hidden;
+}
+
+/* Garantir que os botões flutuantes não sejam afetados pelo container */
+.book-container .floating-btn {
+    position: fixed !important;
+    z-index: 9999 !important;
+    pointer-events: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 /* Páginas */
@@ -43,6 +72,15 @@ body {
     overflow-x: hidden;
 }
 
+/* Garantir que os botões flutuantes não sejam afetados pelo overflow */
+.page .floating-btn {
+    position: fixed !important;
+    z-index: 9999 !important;
+    pointer-events: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
 .page.active {
     opacity: 1;
     transform: translateX(0);
@@ -50,6 +88,18 @@ body {
 
 .page.prev {
     transform: translateX(-100%);
+}
+
+/* Garantir que os botões flutuantes sejam sempre visíveis, independente do estado da página */
+.page .floating-btn,
+.page.active .floating-btn,
+.page.prev .floating-btn {
+    position: fixed !important;
+    z-index: 9999 !important;
+    pointer-events: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: flex !important;
 }
 
 /* Conteúdo das páginas */
@@ -62,7 +112,8 @@ body {
     align-items: center;
     text-align: center;
     position: relative;
-    padding-top: 6rem; /* Espaço para o cabeçalho */
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     max-width: 100%;
     box-sizing: border-box;
 }
@@ -131,13 +182,13 @@ body {
 }
 
 .cover-content h2 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.2rem;
-    font-weight: 600;
+    font-family: 'Dancing Script', cursive !important;
+    font-size: 2.2rem !important;
+    font-weight: 600 !important;
     margin-bottom: 1rem;
     opacity: 0.95;
     letter-spacing: 0.05em;
-    color: #ffd700;
+    color: #ffd700 !important;
     animation: fadeInUp 0.8s ease-out 0.7s both;
 }
 
@@ -148,39 +199,144 @@ body {
     margin-bottom: 3rem;
     opacity: 0.9;
     line-height: 1.7;
-    color: #e0e0e0;
+    color: #000000;
     animation: fadeInUp 0.8s ease-out 0.9s both;
 }
 
-/* Cabeçalho das páginas */
-.page-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 100;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    max-width: 100%;
-    box-sizing: border-box;
-}
-
-.page-header h2 {
+/* Títulos das páginas */
+.page-content h2 {
     font-family: 'Orbitron', monospace;
     font-size: 2.5rem;
     font-weight: 700;
     color: #333;
-    margin: 0;
+    margin: 4rem 0 2rem 0;
     word-wrap: break-word;
     letter-spacing: 0.02em;
     text-transform: uppercase;
     animation: fadeInUp 0.8s ease-out 0.2s both;
 }
+
+/* Exceção para o título da página de capa */
+.cover-page .page-content h2,
+.cover-content h2 {
+    font-family: 'Dancing Script', cursive !important;
+    font-size: 2.2rem !important;
+    font-weight: 600 !important;
+    color: #ffd700 !important;
+    text-transform: none !important;
+    letter-spacing: 0.05em !important;
+    margin-bottom: 1rem !important;
+    opacity: 0.95 !important;
+    animation: fadeInUp 0.8s ease-out 0.7s both !important;
+}
+
+
+
+/* Botões flutuantes */
+.floating-btn {
+    position: fixed !important;
+    z-index: 9999 !important;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex !important;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    max-width: 100%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    pointer-events: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Botão Voltar (canto superior esquerdo) */
+.floating-btn.voltar-btn {
+    top: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    animation: fadeInUp 0.8s ease-out 0.2s both, shake 1.2s ease-in-out infinite 2s;
+}
+
+/* Esconder botão voltar na página inicial */
+body:has(#page-1.active) .floating-btn.voltar-btn,
+.page.active#page-1 ~ .floating-btn.voltar-btn,
+.floating-btn.voltar-btn.hidden {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.floating-btn.voltar-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+/* Botão Seguir (canto inferior direito) */
+.floating-btn.next-btn {
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    animation: fadeInUp 0.8s ease-out 0.5s both, shake 1.2s ease-in-out infinite 2s;
+}
+
+.floating-btn.next-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Botão Voltar ao Topo */
+.floating-btn.back-to-top-btn {
+    position: fixed !important;
+    bottom: 20px !important;
+    left: 20px !important;
+    z-index: 9998 !important;
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50% !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white !important;
+    border: none !important;
+    font-size: 1.2rem !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    backdrop-filter: blur(10px) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(20px) !important;
+}
+
+.floating-btn.back-to-top-btn.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    display: flex !important;
+}
+
+.floating-btn.back-to-top-btn:hover {
+    transform: translateY(-3px) scale(1.1) !important;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4) !important;
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%) !important;
+}
+
+/* Esconder botão apenas na primeira página - controlado via JavaScript */
 
 /* Botões de navegação */
 @keyframes shake {
@@ -207,6 +363,7 @@ body {
     }
 }
 
+/* Botão next original (para a página de capa) */
 .next-btn {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -286,22 +443,37 @@ body {
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border-bottom: 4px solid #667eea;
     cursor: pointer;
+    animation: float 4s ease-in-out infinite;
 }
 
-.story-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    border-bottom: 4px solid #764ba2;
+.story-card:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.story-card:nth-child(3) {
+    animation-delay: 1s;
+}
+
+.story-card:hover,
+.story-grid .story-card:hover,
+.page.active .story-card:hover {
+    transform: translateY(-15px) scale(1.02) !important;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2) !important;
+    border-bottom: 4px solid #764ba2 !important;
+    animation-play-state: paused !important;
 }
 
 /* Garantir que o hover funcione mesmo com JavaScript */
-.story-card.story-card-loaded:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    border-bottom: 4px solid #764ba2;
+.story-card.story-card-loaded:hover,
+.story-grid .story-card.story-card-loaded:hover,
+.page.active .story-card.story-card-loaded:hover {
+    transform: translateY(-15px) scale(1.02) !important;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2) !important;
+    border-bottom: 4px solid #764ba2 !important;
+    animation-play-state: paused !important;
 }
 
 .story-card-content {
@@ -378,8 +550,32 @@ body {
     border-radius: 20px;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border-bottom: 4px solid #667eea;
+    animation: floatSlow 5s ease-in-out infinite;
+    cursor: pointer;
+    position: relative;
+}
+
+.tech-card:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.tech-card:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.tech-card:nth-child(4) {
+    animation-delay: 0.9s;
+}
+
+.tech-card:nth-child(5) {
+    animation-delay: 1.2s;
+}
+
+.tech-card:nth-child(6) {
+    animation-delay: 1.5s;
+}
     max-width: 100%;
     box-sizing: border-box;
     cursor: pointer;
@@ -387,9 +583,22 @@ body {
 }
 
 .tech-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    border-bottom: 4px solid #764ba2;
+    transform: translateY(-15px) scale(1.02) !important;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2) !important;
+    border-bottom: 4px solid #764ba2 !important;
+    background-color: #f0f0ff !important;
+    pointer-events: auto !important;
+    animation-play-state: paused !important;
+}
+
+/* Regra específica para tech cards com data-tech */
+.tech-card[data-tech]:hover {
+    transform: translateY(-15px) scale(1.02) !important;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2) !important;
+    border-bottom: 4px solid #764ba2 !important;
+    background-color: #f0f0ff !important;
+    pointer-events: auto !important;
+    animation-play-state: paused !important;
 }
 
 .tech-card i {
@@ -418,19 +627,7 @@ body {
     line-height: 1.6;
 }
 
-.tech-card::after {
-    content: "🔗";
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.2rem;
-    opacity: 0.6;
-    transition: opacity 0.3s ease;
-}
 
-.tech-card:hover::after {
-    opacity: 1;
-}
 
 /* Serviços */
 .services-content {
@@ -447,19 +644,43 @@ body {
     border-radius: 20px;
     margin-bottom: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border-bottom: 4px solid #667eea;
     display: flex;
     align-items: center;
     gap: 2.5rem;
     max-width: 100%;
     box-sizing: border-box;
+    animation: floatFast 4.5s ease-in-out infinite;
 }
 
-.service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    border-bottom: 4px solid #764ba2;
+.service-card:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.service-card:nth-child(3) {
+    animation-delay: 0.8s;
+}
+
+.service-card:nth-child(4) {
+    animation-delay: 1.2s;
+}
+
+.service-card:nth-child(5) {
+    animation-delay: 1.6s;
+}
+
+.service-card:nth-child(6) {
+    animation-delay: 2s;
+}
+
+.service-card:hover,
+.services-content .service-card:hover,
+.page.active .service-card:hover {
+    transform: translateY(-15px) scale(1.02) !important;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2) !important;
+    border-bottom: 4px solid #764ba2 !important;
+    animation-play-state: paused !important;
 }
 
 .service-icon {
@@ -546,8 +767,17 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     max-width: 100%;
     box-sizing: border-box;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border-bottom: 3px solid #667eea;
+    animation: floatSlow 4s ease-in-out infinite;
+}
+
+.contact-method:nth-child(2) {
+    animation-delay: 0.6s;
+}
+
+.contact-method:nth-child(3) {
+    animation-delay: 1.2s;
 }
 
 .contact-method a {
@@ -559,10 +789,13 @@ body {
     color: inherit;
 }
 
-.contact-method:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    border-bottom: 3px solid #764ba2;
+.contact-method:hover,
+.contact-methods .contact-method:hover,
+.page.active .contact-method:hover {
+    transform: translateY(-15px) scale(1.02) !important;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2) !important;
+    border-bottom: 3px solid #764ba2 !important;
+    animation-play-state: paused !important;
 }
 
 .contact-method i {
@@ -687,16 +920,40 @@ body {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border-bottom: 4px solid #667eea;
     max-width: 100%;
     box-sizing: border-box;
+    animation: float 5s ease-in-out infinite;
 }
 
-.portfolio-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    border-bottom: 4px solid #764ba2;
+.portfolio-card:nth-child(2) {
+    animation-delay: 0.7s;
+}
+
+.portfolio-card:nth-child(3) {
+    animation-delay: 1.4s;
+}
+
+.portfolio-card:nth-child(4) {
+    animation-delay: 2.1s;
+}
+
+.portfolio-card:nth-child(5) {
+    animation-delay: 2.8s;
+}
+
+.portfolio-card:nth-child(6) {
+    animation-delay: 3.5s;
+}
+
+.portfolio-card:hover,
+.portfolio-grid .portfolio-card:hover,
+.page.active .portfolio-card:hover {
+    transform: translateY(-15px) scale(1.02) !important;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2) !important;
+    border-bottom: 4px solid #764ba2 !important;
+    animation-play-state: paused !important;
 }
 
 .portfolio-image {
@@ -864,6 +1121,33 @@ body {
     }
 }
 
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes floatSlow {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes floatFast {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
 /* Aplicar animações aos elementos */
 .page.active .page-content {
     animation: fadeInUp 0.8s ease-out;
@@ -873,47 +1157,37 @@ body {
     animation: scaleIn 1s ease-out;
 }
 
-.page.active .story-card {
-    animation: fadeInUpCards 0.6s ease-out;
-}
-
-.page.active .tech-card {
-    animation: fadeInUpCards 0.6s ease-out;
-}
-
-.page.active .service-card {
-    animation: fadeInUpCards 0.6s ease-out;
-}
-
-.page.active .portfolio-card {
-    animation: fadeInUpCards 0.6s ease-out;
-}
-
-.page.active .contact-method {
-    animation: fadeInUpCards 0.6s ease-out;
-}
-
 
 
 /* Responsividade */
 @media (max-width: 768px) {
     .page-content {
         padding: 1rem;
-        padding-top: 8rem;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
     }
     
-    .page-header {
-        padding: 1rem;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        height: auto;
-        min-height: 4rem;
+    .floating-btn.voltar-btn {
+        top: 15px;
+        left: 15px;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.8rem;
+    }
+    
+    .floating-btn.next-btn {
+        bottom: 15px;
+        right: 15px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
     }
     
     .page-header h2 {
         font-size: 1.6rem;
         margin: 0;
+    }
+    
+    .page-content h2 {
+        margin: 3.5rem 0 2rem 0;
     }
     
     .logo h1 {
@@ -962,19 +1236,43 @@ body {
 @media (max-width: 480px) {
     .page-content {
         padding: 0.5rem;
-        padding-top: 7rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
     }
     
-    .page-header {
-        padding: 0.8rem;
-        flex-direction: column;
-        gap: 0.3rem;
-        min-height: 4.5rem;
+    .floating-btn.voltar-btn {
+        top: 10px;
+        left: 10px;
+        padding: 0.6rem 1rem;
+        font-size: 0.7rem;
     }
     
-    .page-header h2 {
-        font-size: 1.4rem;
-        text-align: center;
+    .floating-btn.next-btn {
+        bottom: 10px;
+        right: 10px;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.8rem;
+    }
+    
+    .floating-btn.back-to-top-btn {
+        bottom: 10px !important;
+        left: 10px !important;
+        width: 35px !important;
+        height: 35px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    .floating-btn.back-to-top-btn {
+        bottom: 10px !important;
+        left: 10px !important;
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 1rem !important;
+    }
+    
+    .page-content h2 {
+        font-size: 1.8rem;
+        margin: 3rem 0 1.5rem 0;
     }
     
     .logo h1 {

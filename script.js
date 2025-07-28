@@ -2,6 +2,51 @@
 let currentPage = 1;
 const totalPages = 6;
 
+// Função para atualizar os botões flutuantes
+function updateFloatingButtons() {
+    const voltarBtn = document.getElementById('voltar-btn');
+    const nextBtn = document.getElementById('next-btn');
+    
+    // Configurações dos botões por página
+    const buttonConfigs = {
+        1: { voltar: false, next: '>> Começar a História' },
+        2: { voltar: true, next: '>> Nossas Tecnologias' },
+        3: { voltar: true, next: '>> Nossos Serviços' },
+        4: { voltar: true, next: '>> Nossos Trabalhos' },
+        5: { voltar: true, next: '>> Entre em Contato' },
+        6: { voltar: true, next: 'Voltar ao Início' }
+    };
+    
+    const config = buttonConfigs[currentPage];
+    
+    // Atualiza botão voltar
+    if (voltarBtn) {
+        if (config.voltar) {
+            voltarBtn.style.display = 'flex';
+            voltarBtn.style.visibility = 'visible';
+            voltarBtn.style.opacity = '1';
+            voltarBtn.style.pointerEvents = 'auto';
+            voltarBtn.classList.remove('hidden');
+        } else {
+            voltarBtn.style.display = 'none';
+            voltarBtn.style.visibility = 'hidden';
+            voltarBtn.style.opacity = '0';
+            voltarBtn.style.pointerEvents = 'none';
+            voltarBtn.classList.add('hidden');
+        }
+    }
+    
+    // Atualiza botão next
+    if (nextBtn) {
+        nextBtn.textContent = config.next;
+        if (currentPage === totalPages) {
+            nextBtn.setAttribute('data-action', 'home');
+        } else {
+            nextBtn.setAttribute('data-action', 'next');
+        }
+    }
+}
+
 // Função para navegar para a próxima página
 function nextPage() {
     if (currentPage < totalPages) {
@@ -18,12 +63,8 @@ function nextPage() {
         nextPageElement.classList.remove('prev');
         nextPageElement.classList.add('active');
         
-        // Se chegou na última página, o botão volta ao início
-        if (currentPage === totalPages) {
-            const nextBtn = nextPageElement.querySelector('.next-btn');
-            nextBtn.innerHTML = '<i class="fas fa-home"></i> Voltar ao Início';
-            nextBtn.setAttribute('data-action', 'home');
-        }
+        // Atualiza os botões flutuantes
+        updateFloatingButtons();
         
         // Adiciona efeito de scroll suave para o topo
         nextPageElement.scrollTo({ top: 0, behavior: 'smooth' });
@@ -45,6 +86,9 @@ function prevPage() {
         prevPageElement.classList.remove('prev');
         prevPageElement.classList.add('active');
         
+        // Atualiza os botões flutuantes
+        updateFloatingButtons();
+        
         // Adiciona efeito de scroll suave para o topo
         prevPageElement.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -65,6 +109,9 @@ function goToPage(pageNumber) {
         // Mostra a página desejada
         const targetPageElement = document.getElementById(`page-${pageNumber}`);
         targetPageElement.classList.add('active');
+        
+        // Atualiza os botões flutuantes
+        updateFloatingButtons();
         
         // Adiciona efeito de scroll suave para o topo
         targetPageElement.scrollTo({ top: 0, behavior: 'smooth' });
@@ -104,8 +151,8 @@ function addScrollAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
-                // Remove apenas a transformação inicial, mantendo o hover CSS
-                entry.target.style.removeProperty('transform');
+                // Não remove mais a transformação para não interferir com as animações CSS
+                // entry.target.style.removeProperty('transform');
             }
         });
     }, observerOptions);
@@ -114,8 +161,10 @@ function addScrollAnimations() {
     const animatedElements = document.querySelectorAll('.tech-card, .service-card, .contact-method, .portfolio-card, .story-card');
     animatedElements.forEach(el => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        // Não define mais transform inicial para não interferir com animações CSS
+        // el.style.transform = 'translateY(30px)';
+        // Não define mais transition para não interferir com animações CSS
+        // el.style.transition = 'opacity 0.6s ease';
         observer.observe(el);
     });
 }
@@ -135,7 +184,14 @@ function addTechCardEffects() {
     // Adiciona event listeners aos tech cards
     const techCards = document.querySelectorAll('.tech-card');
     techCards.forEach(card => {
-        card.addEventListener('click', function() {
+        // Adiciona classe para indicar que o card está carregado
+        card.classList.add('tech-card-loaded');
+        
+        // Adiciona event listener apenas para clique, sem interferir com hover
+        card.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
             const techType = this.getAttribute('data-tech');
             const wikiUrl = techWikiLinks[techType];
             
@@ -144,6 +200,9 @@ function addTechCardEffects() {
                 window.open(wikiUrl, '_blank');
             }
         });
+        
+        // Garante que o card tenha pointer-events habilitado
+        card.style.pointerEvents = 'auto';
     });
 }
 
@@ -169,6 +228,75 @@ function addStoryCardEffects() {
         // Adiciona classe para indicar que o card está carregado
         card.classList.add('story-card-loaded');
     });
+}
+
+// Função para controlar o botão "Voltar ao Topo"
+function addBackToTopButton() {
+    const backToTopBtn = document.getElementById('back-to-top-btn');
+    
+    if (!backToTopBtn) return;
+    
+    // Função para verificar se deve mostrar o botão
+    function checkBackToTopVisibility() {
+        const activePage = document.querySelector('.page.active');
+        const currentPage = activePage ? parseInt(activePage.id.replace('page-', '')) : 1;
+        
+        // Esconder botão na primeira página
+        if (currentPage === 1) {
+            backToTopBtn.style.display = 'none';
+            return;
+        }
+        
+        // Mostrar botão a partir da segunda página
+        backToTopBtn.style.display = 'flex';
+        
+        // Detecta scroll da página ativa
+        let scrollTop = 0;
+        if (activePage) {
+            scrollTop = activePage.scrollTop;
+        }
+        
+        // Mostrar/ocultar baseado no scroll
+        if (scrollTop > 100) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    }
+    
+    // Event listener para scroll
+    window.addEventListener('scroll', checkBackToTopVisibility);
+    
+    // Event listener para scroll das páginas individuais
+    document.addEventListener('scroll', function(e) {
+        const activePage = document.querySelector('.page.active');
+        if (activePage && e.target === activePage) {
+            checkBackToTopVisibility();
+        }
+    }, true);
+    
+    // Event listener para clique
+    backToTopBtn.addEventListener('click', function() {
+        // Detecta a página ativa que está fazendo o scroll
+        const activePage = document.querySelector('.page.active');
+        
+        if (activePage) {
+            // Faz scroll na página ativa
+            activePage.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        } else {
+            // Fallback para scroll na window
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    });
+    
+    // Verificar visibilidade inicial
+    checkBackToTopVisibility();
 }
 
 // Função para adicionar navegação por teclado
@@ -517,6 +645,32 @@ document.addEventListener('DOMContentLoaded', function() {
     addServiceCardEffects();
     addPortfolioCardEffects();
     addStoryCardEffects();
+    
+    // Inicializa os botões flutuantes
+    updateFloatingButtons();
+    
+    // Adiciona botão "Voltar ao Topo"
+    addBackToTopButton();
+    
+    // Verificar visibilidade do botão "Voltar ao Topo" quando a página muda
+    const originalUpdateFloatingButtons = updateFloatingButtons;
+    updateFloatingButtons = function() {
+        originalUpdateFloatingButtons();
+        
+        // Atualizar visibilidade do botão "Voltar ao Topo"
+        const backToTopBtn = document.getElementById('back-to-top-btn');
+        if (backToTopBtn) {
+            const activePage = document.querySelector('.page.active');
+            const currentPage = activePage ? parseInt(activePage.id.replace('page-', '')) : 1;
+            
+            if (currentPage === 1) {
+                backToTopBtn.style.display = 'none';
+                backToTopBtn.classList.remove('show');
+            } else {
+                backToTopBtn.style.display = 'flex';
+            }
+        }
+    };
     
 
     
