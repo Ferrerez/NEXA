@@ -71,31 +71,7 @@ function goToPage(pageNumber) {
     }
 }
 
-// Função para lidar com o envio do formulário
-function handleFormSubmit(event) {
-    event.preventDefault();
-    
-    // Aqui você pode adicionar a lógica para enviar o formulário
-    // Por exemplo, usando fetch para enviar para um servidor
-    
-    const form = event.target;
-    const formData = new FormData(form);
-    
-    // Simula o envio do formulário
-    const submitBtn = form.querySelector('.submit-btn');
-    const originalText = submitBtn.innerHTML;
-    
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-    submitBtn.disabled = true;
-    
-    // Simula um delay de envio
-    setTimeout(() => {
-        alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-        form.reset();
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-    }, 2000);
-}
+
 
 // Função para abrir projetos do portfólio
 function openProject(projectId) {
@@ -128,7 +104,8 @@ function addScrollAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                // Remove apenas a transformação inicial, mantendo o hover CSS
+                entry.target.style.removeProperty('transform');
             }
         });
     }, observerOptions);
@@ -145,47 +122,41 @@ function addScrollAnimations() {
 
 // Função para adicionar efeitos de hover aos cards de tecnologia
 function addTechCardEffects() {
-    const techCards = document.querySelectorAll('.tech-card');
+    // Mapeamento das tecnologias para URLs da Wikipedia
+    const techWikiLinks = {
+        'html5': 'https://pt.wikipedia.org/wiki/HTML5',
+        'css3': 'https://pt.wikipedia.org/wiki/CSS3',
+        'javascript': 'https://pt.wikipedia.org/wiki/JavaScript',
+        'bootstrap': 'https://pt.wikipedia.org/wiki/Bootstrap_(framework)',
+        'wordpress': 'https://pt.wikipedia.org/wiki/WordPress',
+        'react': 'https://pt.wikipedia.org/wiki/React_(JavaScript)'
+    };
     
+    // Adiciona event listeners aos tech cards
+    const techCards = document.querySelectorAll('.tech-card');
     techCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
+        card.addEventListener('click', function() {
+            const techType = this.getAttribute('data-tech');
+            const wikiUrl = techWikiLinks[techType];
+            
+            if (wikiUrl) {
+                // Abre a página da Wikipedia em uma nova aba
+                window.open(wikiUrl, '_blank');
+            }
         });
     });
 }
 
 // Função para adicionar efeitos de hover aos cards de serviço
 function addServiceCardEffects() {
-    const serviceCards = document.querySelectorAll('.service-card');
-    
-    serviceCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateX(15px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateX(0) scale(1)';
-        });
-    });
+    // Os efeitos hover já estão sendo aplicados pelo CSS
+    // Esta função pode ser usada para efeitos adicionais se necessário
 }
 
 // Função para adicionar efeitos aos cards do portfólio
 function addPortfolioCardEffects() {
-    const portfolioCards = document.querySelectorAll('.portfolio-card');
-    
-    portfolioCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-15px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
+    // Os efeitos hover já estão sendo aplicados pelo CSS
+    // Esta função pode ser usada para efeitos adicionais se necessário
 }
 
 // Função para adicionar efeitos aos cards da história
@@ -547,11 +518,7 @@ document.addEventListener('DOMContentLoaded', function() {
     addPortfolioCardEffects();
     addStoryCardEffects();
     
-    // Adiciona listener para o formulário
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', handleFormSubmit);
-    }
+
     
     // Atualiza o indicador de progresso quando a página muda
     const originalNextPage = nextPage;

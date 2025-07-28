@@ -283,17 +283,25 @@ body {
 
 .story-card {
     background: white;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: all 0.3s ease;
     border-bottom: 4px solid #667eea;
+    cursor: pointer;
 }
 
 .story-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-    border-bottom-color: #764ba2;
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-bottom: 4px solid #764ba2;
+}
+
+/* Garantir que o hover funcione mesmo com JavaScript */
+.story-card.story-card-loaded:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-bottom: 4px solid #764ba2;
 }
 
 .story-card-content {
@@ -371,14 +379,17 @@ body {
     text-align: center;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    border: 1px solid #f0f0f0;
+    border-bottom: 4px solid #667eea;
     max-width: 100%;
     box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
 }
 
 .tech-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-bottom: 4px solid #764ba2;
 }
 
 .tech-card i {
@@ -407,6 +418,20 @@ body {
     line-height: 1.6;
 }
 
+.tech-card::after {
+    content: "🔗";
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.2rem;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.tech-card:hover::after {
+    opacity: 1;
+}
+
 /* Serviços */
 .services-content {
     width: 100%;
@@ -423,7 +448,7 @@ body {
     margin-bottom: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    border: 1px solid #f0f0f0;
+    border-bottom: 4px solid #667eea;
     display: flex;
     align-items: center;
     gap: 2.5rem;
@@ -432,8 +457,9 @@ body {
 }
 
 .service-card:hover {
-    transform: translateX(10px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-bottom: 4px solid #764ba2;
 }
 
 .service-icon {
@@ -474,11 +500,10 @@ body {
 
 /* Contato */
 .contact-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    display: flex;
+    justify-content: center;
     width: 100%;
-    max-width: 1200px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 2rem;
     box-sizing: border-box;
@@ -522,11 +547,22 @@ body {
     max-width: 100%;
     box-sizing: border-box;
     transition: all 0.3s ease;
+    border-bottom: 3px solid #667eea;
+}
+
+.contact-method a {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
 }
 
 .contact-method:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-bottom: 3px solid #764ba2;
 }
 
 .contact-method i {
@@ -652,7 +688,7 @@ body {
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    border: 1px solid #f0f0f0;
+    border-bottom: 4px solid #667eea;
     max-width: 100%;
     box-sizing: border-box;
 }
@@ -660,6 +696,7 @@ body {
 .portfolio-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-bottom: 4px solid #764ba2;
 }
 
 .portfolio-image {
@@ -816,6 +853,17 @@ body {
     }
 }
 
+@keyframes fadeInUpCards {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Aplicar animações aos elementos */
 .page.active .page-content {
     animation: fadeInUp 0.8s ease-out;
@@ -826,109 +874,46 @@ body {
 }
 
 .page.active .story-card {
-    animation: slideInUp 0.6s ease-out both;
+    animation: fadeInUpCards 0.6s ease-out;
 }
 
 .page.active .tech-card {
-    animation: slideInUp 0.6s ease-out;
+    animation: fadeInUpCards 0.6s ease-out;
 }
 
 .page.active .service-card {
-    animation: slideInUp 0.6s ease-out;
+    animation: fadeInUpCards 0.6s ease-out;
 }
 
 .page.active .portfolio-card {
-    animation: slideInUp 0.6s ease-out;
+    animation: fadeInUpCards 0.6s ease-out;
 }
 
 .page.active .contact-method {
-    animation: fadeInUp 0.6s ease-out;
+    animation: fadeInUpCards 0.6s ease-out;
 }
 
-/* Bordas roxas nos cards */
-.tech-card {
-    background: white;
-    border-radius: 20px;
-    padding: 2rem;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border-bottom: 4px solid #667eea;
-}
 
-.tech-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    border-bottom: 4px solid #764ba2;
-}
-
-.service-card {
-    background: white;
-    border-radius: 20px;
-    padding: 2rem;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border-bottom: 4px solid #667eea;
-}
-
-.service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    border-bottom: 4px solid #764ba2;
-}
-
-.portfolio-card {
-    background: white;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border-bottom: 4px solid #667eea;
-}
-
-.portfolio-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    border-bottom: 4px solid #764ba2;
-}
-
-.contact-method {
-    background: white;
-    border-radius: 15px;
-    padding: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border-bottom: 3px solid #667eea;
-}
-
-.contact-method:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    border-bottom: 3px solid #764ba2;
-}
 
 /* Responsividade */
 @media (max-width: 768px) {
     .page-content {
         padding: 1rem;
-        padding-top: 7rem;
+        padding-top: 8rem;
     }
     
     .page-header {
-        padding: 0.8rem 1rem;
-        flex-direction: column;
-        gap: 0.5rem;
+        padding: 1rem;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         height: auto;
-        min-height: 3.5rem;
-        max-height: 5rem;
+        min-height: 4rem;
     }
     
     .page-header h2 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+        margin: 0;
     }
     
     .logo h1 {
@@ -940,6 +925,7 @@ body {
     .services-content,
     .portfolio-content {
         padding: 1rem;
+        margin-top: 1rem;
     }
     
     .story-grid {
@@ -964,8 +950,6 @@ body {
     }
     
     .contact-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
         padding: 1rem;
     }
     
@@ -978,11 +962,19 @@ body {
 @media (max-width: 480px) {
     .page-content {
         padding: 0.5rem;
-        padding-top: 6rem;
+        padding-top: 7rem;
     }
     
     .page-header {
-        padding: 0.5rem;
+        padding: 0.8rem;
+        flex-direction: column;
+        gap: 0.3rem;
+        min-height: 4.5rem;
+    }
+    
+    .page-header h2 {
+        font-size: 1.4rem;
+        text-align: center;
     }
     
     .logo h1 {

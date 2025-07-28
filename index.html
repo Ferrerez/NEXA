@@ -25,7 +25,7 @@
     <meta property="twitter:description" content="Transformando ideias em experiências digitais">
     <meta property="twitter:image" content="https://nexa.com.br/og-image.jpg">
     
-    <link rel="stylesheet" href="styles.css?v=31.0">
+    <link rel="stylesheet" href="styles.css?v=34.0">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Quicksand:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer">
     
@@ -140,32 +140,32 @@
                 </div>
                 <div class="tech-content">
                     <div class="tech-grid">
-                        <div class="tech-card">
+                        <div class="tech-card" data-tech="html5">
                             <i class="fab fa-html5"></i>
                             <h3>HTML5</h3>
                             <p>Estrutura semântica e acessível</p>
                         </div>
-                        <div class="tech-card">
+                        <div class="tech-card" data-tech="css3">
                             <i class="fab fa-css3-alt"></i>
                             <h3>CSS3</h3>
                             <p>Design responsivo e animações</p>
                         </div>
-                        <div class="tech-card">
+                        <div class="tech-card" data-tech="javascript">
                             <i class="fab fa-js-square"></i>
                             <h3>JavaScript</h3>
                             <p>Interatividade e funcionalidades</p>
                         </div>
-                        <div class="tech-card">
+                        <div class="tech-card" data-tech="bootstrap">
                             <i class="fab fa-bootstrap"></i>
                             <h3>Bootstrap</h3>
                             <p>Framework responsivo</p>
                         </div>
-                        <div class="tech-card">
+                        <div class="tech-card" data-tech="wordpress">
                             <i class="fab fa-wordpress"></i>
                             <h3>WordPress</h3>
                             <p>CMS personalizável</p>
                         </div>
-                        <div class="tech-card">
+                        <div class="tech-card" data-tech="react">
                             <i class="fab fa-react"></i>
                             <h3>React</h3>
                             <p>Interfaces dinâmicas</p>
@@ -380,62 +380,39 @@
                 <div class="contact-content">
                     <div class="contact-info">
                         <h3>Vamos Conversar?</h3>
-                        <p>Estamos prontos para transformar sua visão em realidade. Entre em contato conosco e vamos criar algo incrível juntos!</p>
+                        <p>Estamos prontos para transformar sua visão em realidade. Entre em contato conosco através dos canais abaixo e vamos criar algo incrível juntos!</p>
                         
                         <div class="contact-methods">
                             <div class="contact-method">
-                                <i class="fas fa-envelope"></i>
-                                <div>
-                                    <h4>Email</h4>
-                                    <p>contato@nexa.com.br</p>
-                                </div>
+                                <a href="mailto:rodolfomocmg@gmail.com">
+                                    <i class="fas fa-envelope"></i>
+                                    <div>
+                                        <h4>Email</h4>
+                                        <p>rodolfomocmg@gmail.com</p>
+                                    </div>
+                                </a>
                             </div>
                             
                             <div class="contact-method">
-                                <i class="fas fa-phone"></i>
-                                <div>
-                                    <h4>Telefone</h4>
-                                    <p>(11) 99999-9999</p>
-                                </div>
+                                <a href="tel:+5538999451264">
+                                    <i class="fas fa-phone"></i>
+                                    <div>
+                                        <h4>Telefone</h4>
+                                        <p>(38) 99945-1264</p>
+                                    </div>
+                                </a>
                             </div>
                             
                             <div class="contact-method">
-                                <i class="fab fa-whatsapp"></i>
-                                <div>
-                                    <h4>WhatsApp</h4>
-                                    <p>(11) 99999-9999</p>
-                                </div>
-                            </div>
-                            
-                            <div class="contact-method">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div>
-                                    <h4>Endereço</h4>
-                                    <p>São Paulo, SP - Brasil</p>
-                                </div>
+                                <a href="https://wa.me/5538999451264" target="_blank">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <div>
+                                        <h4>WhatsApp</h4>
+                                        <p>(38) 99945-1264</p>
+                                    </div>
+                                </a>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="contact-form">
-                        <h3>Envie uma Mensagem</h3>
-                        <form id="contactForm">
-                            <div class="form-group">
-                                <input type="text" placeholder="Seu nome" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" placeholder="Seu email" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="tel" placeholder="Seu telefone">
-                            </div>
-                            <div class="form-group">
-                                <textarea placeholder="Sua mensagem" rows="5" required></textarea>
-                            </div>
-                            <button type="submit" class="submit-btn">
-                                ENVIAR Enviar Mensagem
-                            </button>
-                        </form>
                     </div>
                 </div>
                 <button class="next-btn" data-action="home">
