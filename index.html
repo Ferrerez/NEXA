@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexa - Desenvolvimento de Sites</title>
+    <meta name="description" content="Nexa - Transformando ideias em experiências digitais. Desenvolvimento de sites responsivos, e-commerce e aplicações web modernas.">
+    <meta name="keywords" content="desenvolvimento de sites, web design, e-commerce, aplicações web, São Paulo">
+    <meta name="author" content="Nexa">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>N</text></svg>">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nexa.com.br/">
+    <meta property="og:title" content="Nexa - Desenvolvimento de Sites">
+    <meta property="og:description" content="Transformando ideias em experiências digitais">
+    <meta property="og:image" content="https://nexa.com.br/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://nexa.com.br/">
+    <meta property="twitter:title" content="Nexa - Desenvolvimento de Sites">
+    <meta property="twitter:description" content="Transformando ideias em experiências digitais">
+    <meta property="twitter:image" content="https://nexa.com.br/og-image.jpg">
+    
+    <link rel="stylesheet" href="styles.css?v=30.0">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Quicksand:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <!-- Backup Font Awesome CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" media="print" onload="this.media='all'">
+    
+    <!-- Fallback para Font Awesome -->
+    <script>
+        // Fallback para ícones se o Font Awesome não carregar
+        setTimeout(function() {
+            if (!document.querySelector('.fas')) {
+                const style = document.createElement('style');
+                style.textContent = `
+                    .fas.fa-arrow-right::before { content: ">>"; }
+                    .fas.fa-arrow-left::before { content: "<<"; }
+                    .fas.fa-home::before { content: "HOME"; }
+                    .fas.fa-paper-plane::before { content: "ENVIAR"; }
+                    .fab.fa-html5::before { content: "HTML5"; }
+                    .fab.fa-css3-alt::before { content: "CSS3"; }
+                    .fab.fa-js-square::before { content: "JS"; }
+                    .fab.fa-bootstrap::before { content: "Bootstrap"; }
+                    .fab.fa-wordpress::before { content: "WP"; }
+                    .fab.fa-react::before { content: "React"; }
+                    .fab.fa-node-js::before { content: "Node.js"; }
+                    .fab.fa-php::before { content: "PHP"; }
+                    .fas.fa-laptop-code::before { content: "💻"; }
+                    .fas.fa-mobile-alt::before { content: "📱"; }
+                    .fas.fa-shopping-cart::before { content: "🛒"; }
+                    .fas.fa-search::before { content: "🔍"; }
+                    .fas.fa-tools::before { content: "🔧"; }
+                    .fas.fa-palette::before { content: "🎨"; }
+                    .fas.fa-envelope::before { content: "📧"; }
+                    .fas.fa-phone::before { content: "📞"; }
+                    .fab.fa-whatsapp::before { content: "WhatsApp"; }
+                    .fas.fa-map-marker-alt::before { content: "📍"; }
+                `;
+                document.head.appendChild(style);
+            }
+        }, 2000);
+    </script>
+</head>
+<body>
+    <div class="book-container">
+        <!-- Página 1: Capa -->
+        <div class="page active" id="page-1">
+            <div class="page-content cover-page">
+                <div class="cover-content">
+                    <div class="logo">
+                        <img src="logo.png" alt="Nexa Logo" class="logo-img">
+                    </div>
+                    <h2>Desenvolvimento de Sites</h2>
+                    <p>Transformando ideias em experiências digitais</p>
+                    <button class="next-btn" data-action="next">
+                        >> Começar a História
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página 2: Nossa História -->
+        <div class="page" id="page-2">
+            <div class="page-content">
+                <div class="page-header">
+                    <button class="voltar-btn" data-action="prev">
+                        VOLTAR
+                    </button>
+                    <h2>Nossa História</h2>
+                </div>
+                <div class="story-content">
+                    <div class="story-grid">
+                        <div class="story-card">
+                            <div class="story-card-content">
+                                <h3>O Início de uma Jornada</h3>
+                                <p>A Nexa nasceu da paixão por tecnologia e design. Em 2020, um grupo de desenvolvedores visionários se uniu com um objetivo claro: criar experiências digitais que não apenas funcionem perfeitamente, mas que também inspirem e conectem pessoas.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="story-card">
+                            <div class="story-card-content">
+                                <h3>Nossa Missão</h3>
+                                <p>Acreditamos que cada empresa tem uma história única para contar. Nossa missão é transformar essas histórias em sites que não apenas representem a marca, mas que criem conexões genuínas com os visitantes.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="story-card">
+                            <div class="story-card-content">
+                                <h3>Nossos Valores</h3>
+                                <ul>
+                                    <li><strong>Inovação:</strong> Sempre buscando as melhores tecnologias</li>
+                                    <li><strong>Qualidade:</strong> Código limpo e performance excepcional</li>
+                                    <li><strong>Design:</strong> Interfaces intuitivas e visualmente atrativas</li>
+                                    <li><strong>Suporte:</strong> Parceria contínua com nossos clientes</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="next-btn" data-action="next">
+                    >> Nossas Tecnologias
+                </button>
+            </div>
+        </div>
+
+        <!-- Página 3: Tecnologias -->
+        <div class="page" id="page-3">
+            <div class="page-content">
+                <div class="page-header">
+                    <button class="voltar-btn" data-action="prev">
+                        VOLTAR
+                    </button>
+                    <h2>Nossas Tecnologias</h2>
+                </div>
+                <div class="tech-content">
+                    <div class="tech-grid">
+                        <div class="tech-card">
+                            <i class="fab fa-html5"></i>
+                            <h3>HTML5</h3>
+                            <p>Estrutura semântica e acessível</p>
+                        </div>
+                        <div class="tech-card">
+                            <i class="fab fa-css3-alt"></i>
+                            <h3>CSS3</h3>
+                            <p>Design responsivo e animações</p>
+                        </div>
+                        <div class="tech-card">
+                            <i class="fab fa-js-square"></i>
+                            <h3>JavaScript</h3>
+                            <p>Interatividade e funcionalidades</p>
+                        </div>
+                        <div class="tech-card">
+                            <i class="fab fa-bootstrap"></i>
+                            <h3>Bootstrap</h3>
+                            <p>Framework responsivo</p>
+                        </div>
+                        <div class="tech-card">
+                            <i class="fab fa-wordpress"></i>
+                            <h3>WordPress</h3>
+                            <p>CMS personalizável</p>
+                        </div>
+                        <div class="tech-card">
+                            <i class="fab fa-react"></i>
+                            <h3>React</h3>
+                            <p>Interfaces dinâmicas</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="next-btn" data-action="next">
+                    >> Nossos Serviços
+                </button>
+            </div>
+        </div>
+
+        <!-- Página 4: Serviços -->
+        <div class="page" id="page-4">
+            <div class="page-content">
+                <div class="page-header">
+                    <button class="voltar-btn" data-action="prev">
+                        VOLTAR
+                    </button>
+                    <h2>Nossos Serviços</h2>
+                </div>
+                <div class="services-content">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3>Desenvolvimento Web</h3>
+                        <p>Sites responsivos e modernos com as melhores tecnologias do mercado.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Design Responsivo</h3>
+                        <p>Interfaces que se adaptam perfeitamente a qualquer dispositivo.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3>E-commerce</h3>
+                        <p>Lojas virtuais completas com sistema de pagamento integrado.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>SEO Otimizado</h3>
+                        <p>Sites otimizados para mecanismos de busca e melhor visibilidade.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3>Manutenção</h3>
+                        <p>Suporte contínuo e atualizações para manter seu site sempre atual.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3>Design Personalizado</h3>
+                        <p>Interfaces únicas que refletem a identidade da sua marca.</p>
+                    </div>
+                </div>
+                <button class="next-btn" data-action="next">
+                    >> Nossos Trabalhos
+                </button>
+            </div>
+        </div>
+
+        <!-- Página 5: Trabalhos Realizados -->
+        <div class="page" id="page-5">
+            <div class="page-content">
+                <div class="page-header">
+                    <button class="voltar-btn" data-action="prev">
+                        VOLTAR
+                    </button>
+                    <h2>Nossos Trabalhos</h2>
+                </div>
+                <div class="portfolio-content">
+                    <div class="portfolio-grid">
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <i class="fas fa-laptop-code"></i>
+                                <div class="portfolio-overlay">
+                                    <button class="view-project-btn" data-project="projeto1">Ver Projeto</button>
+                                </div>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>Site Corporativo</h3>
+                                <p>Empresa de Tecnologia</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">HTML5</span>
+                                    <span class="tag">CSS3</span>
+                                    <span class="tag">JavaScript</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <i class="fas fa-shopping-cart"></i>
+                                <div class="portfolio-overlay">
+                                    <button class="view-project-btn" data-project="projeto2">Ver Projeto</button>
+                                </div>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>E-commerce</h3>
+                                <p>Loja de Roupas</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">WordPress</span>
+                                    <span class="tag">WooCommerce</span>
+                                    <span class="tag">PHP</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <i class="fas fa-mobile-alt"></i>
+                                <div class="portfolio-overlay">
+                                    <button class="view-project-btn" data-project="projeto3">Ver Projeto</button>
+                                </div>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>App Web</h3>
+                                <p>Plataforma de Cursos</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">React</span>
+                                    <span class="tag">Node.js</span>
+                                    <span class="tag">MongoDB</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <i class="fas fa-search"></i>
+                                <div class="portfolio-overlay">
+                                    <button class="view-project-btn" data-project="projeto4">Ver Projeto</button>
+                                </div>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>Blog Otimizado</h3>
+                                <p>Portal de Notícias</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">WordPress</span>
+                                    <span class="tag">SEO</span>
+                                    <span class="tag">Analytics</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <i class="fas fa-palette"></i>
+                                <div class="portfolio-overlay">
+                                    <button class="view-project-btn" data-project="projeto5">Ver Projeto</button>
+                                </div>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>Landing Page</h3>
+                                <p>Campanha de Marketing</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">HTML5</span>
+                                    <span class="tag">CSS3</span>
+                                    <span class="tag">A/B Testing</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <i class="fas fa-tools"></i>
+                                <div class="portfolio-overlay">
+                                    <button class="view-project-btn" data-project="projeto6">Ver Projeto</button>
+                                </div>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>Site Institucional</h3>
+                                <p>Clínica Médica</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">HTML5</span>
+                                    <span class="tag">CSS3</span>
+                                    <span class="tag">JavaScript</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="next-btn" data-action="next">
+                    >> Entre em Contato
+                </button>
+            </div>
+        </div>
+
+        <!-- Página 6: Contato -->
+        <div class="page" id="page-6">
+            <div class="page-content">
+                <div class="page-header">
+                    <button class="voltar-btn" data-action="prev">
+                        VOLTAR
+                    </button>
+                    <h2>Entre em Contato</h2>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Vamos Conversar?</h3>
+                        <p>Estamos prontos para transformar sua visão em realidade. Entre em contato conosco e vamos criar algo incrível juntos!</p>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p>contato@nexa.com.br</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <h4>Telefone</h4>
+                                    <p>(11) 99999-9999</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <i class="fab fa-whatsapp"></i>
+                                <div>
+                                    <h4>WhatsApp</h4>
+                                    <p>(11) 99999-9999</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h4>Endereço</h4>
+                                    <p>São Paulo, SP - Brasil</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <h3>Envie uma Mensagem</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <input type="text" placeholder="Seu nome" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Seu email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" placeholder="Seu telefone">
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="Sua mensagem" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">
+                                ENVIAR Enviar Mensagem
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <button class="next-btn" data-action="home">
+                    HOME Voltar ao Início
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js?v=8.0"></script>
+</body>
+</html> 
